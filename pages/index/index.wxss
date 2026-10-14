@@ -1,0 +1,91 @@
+/* pages/index/index.wxss - 首页样式 */
+@import '/styles/theme.wxss';
+@import '/styles/fonts.wxss';
+
+/* 页面容器 */
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+/* ===== 顶部导航栏 ===== */
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-md);
+}
+
+.nav-title {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+/* 导航按钮（像素风格） */
+.nav-btn {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  box-shadow: 2rpx 2rpx 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.nav-btn:active {
+  transform: translate(2rpx, 2rpx);
+  box-shadow: none;
+}
+
+.nav-btn-text {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+/* 导航按钮禁用态 */
+.nav-btn--disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ===== 右下角浮动按钮 ===== */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 60rpx;
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: var(--radius-md);
+  background: var(--emotion-2);
+  color: white;
+  font-size: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4rpx 4rpx 0 rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.fab:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: none;
+}
+
+.fab-text {
+  font-family: var(--font-pixel);
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+}

@@ -1,0 +1,19 @@
+/* styles/fonts.wxss - 像素字体定义 */
+
+/* 
+ * Fusion Pixel 像素字体
+ * 开源协议：SIL OFL 1.1（免费商用）
+ * 下载地址：https://github.com/TakWolf/fusion-pixel-font
+ * 
+ * 使用步骤：
+ * 1. 从上述地址下载 woff2 格式字体文件
+ * 2. 放入项目 fonts/ 目录
+ * 3. 文件名为 FusionPixel.woff2
+ */
+@font-face {
+  font-family: 'FusionPixel';
+  src: url('/fonts/FusionPixel.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

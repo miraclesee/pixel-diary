@@ -1,0 +1,26 @@
+<!--components/emotion-stats/emotion-stats.wxml - 月度情绪统计模板-->
+
+<!-- 空状态：本月无打卡记录 -->
+<view class="stats-empty" wx:if="{{!hasData}}">
+  <text class="stats-empty-text">本月暂无打卡记录</text>
+</view>
+
+<!-- 有数据：情绪分布条形图 -->
+<view class="stats-container" wx:else>
+  <text class="stats-title">本月情绪</text>
+  <view class="stats-list">
+    <view class="stats-row" wx:for="{{stats}}" wx:key="code">
+      <view class="stats-row__label">
+        <text class="stats-row__emoji">{{item.emoji}}</text>
+        <text class="stats-row__name">{{item.label}}</text>
+      </view>
+      <view class="stats-row__bar-wrap">
+        <view
+          class="stats-row__bar"
+          style="width: {{item.barWidth}}%; --emotion-color: var(--emotion-{{item.code}});"
+        ></view>
+      </view>
+      <text class="stats-row__count">{{item.countText}}</text>
+    </view>
+  </view>
+</view>

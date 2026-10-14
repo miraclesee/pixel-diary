@@ -1,0 +1,92 @@
+/* components/emotion-stats/emotion-stats.wxss - 月度情绪统计样式 */
+
+/* ===== 容器 ===== */
+.stats-container {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: 2rpx 2rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+.stats-title {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-md);
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ===== 统计行 ===== */
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* 左侧：emoji + 标签 */
+.stats-row__label {
+  display: flex;
+  align-items: center;
+  width: 120rpx;
+  flex-shrink: 0;
+}
+
+.stats-row__emoji {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+}
+
+.stats-row__name {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+/* 中间：条形轨道 */
+.stats-row__bar-wrap {
+  flex: 1;
+  height: 20rpx;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+/* 条形填充 — 宽度由 inline style 控制，颜色通过 CSS 变量桥接 */
+.stats-row__bar {
+  height: 100%;
+  background: var(--emotion-color);
+  border-radius: var(--radius-sm);
+  min-width: 0;
+  transition: width 500ms ease;
+}
+
+/* 右侧：天数 */
+.stats-row__count {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  width: 70rpx;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ===== 空状态 ===== */
+.stats-empty {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.stats-empty-text {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+}

@@ -1,0 +1,11 @@
+/* app.wxss - 全局样式入口 */
+@import './styles/theme.wxss';
+@import './styles/fonts.wxss';
+
+/* 页面基础样式 */
+page {
+  background-color: var(--bg-primary);
+  font-family: var(--font-pixel);
+  color: var(--text-primary);
+  box-sizing: border-box;
+}

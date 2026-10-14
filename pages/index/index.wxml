@@ -1,0 +1,41 @@
+<!--pages/index/index.wxml - 首页模板-->
+<view class="page-container">
+  <!-- 顶部导航栏：月份切换 -->
+  <view class="nav-header">
+    <view class="nav-btn" bindtap="onPrevMonth">
+      <text class="nav-btn-text">&lt;</text>
+    </view>
+    <text class="nav-title">{{year}}年{{month}}月</text>
+    <view class="nav-btn" bindtap="onNextMonth">
+      <text class="nav-btn-text">&gt;</text>
+    </view>
+  </view>
+
+  <!-- 日历网格组件 -->
+  <calendar-grid
+    id="calendarGrid"
+    year="{{year}}"
+    month="{{month}}"
+    entries="{{entries}}"
+    bind:celltap="onCellTap"
+    bind:celllongpress="onCellLongPress"
+    bind:animationend="onAnimationEnd"
+  />
+
+  <!-- 月度情绪统计面板 -->
+  <emotion-stats entries="{{entries}}" />
+
+  <!-- 打卡弹窗组件 -->
+  <checkin-sheet
+    visible="{{sheetVisible}}"
+    dateStr="{{sheetDateStr}}"
+    existingEntry="{{sheetExistingEntry}}"
+    bind:saved="onSaved"
+    bind:close="onSheetClose"
+  />
+
+  <!-- 右下角浮动"+"按钮 -->
+  <view class="fab" bindtap="onFabTap">
+    <text class="fab-text">+</text>
+  </view>
+</view>

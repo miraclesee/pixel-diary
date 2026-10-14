@@ -1,0 +1,40 @@
+/* styles/theme.wxss - 莫兰迪色系主题变量 */
+page {
+  /* 背景色 */
+  --bg-primary: #F5F5F7;
+  --bg-secondary: #FFFFFF;
+
+  /* 文字色 */
+  --text-primary: #333333;
+  --text-secondary: #888888;
+  --text-light: #BBBBBB;
+
+  /* 情绪色块 - 6种莫兰迪色系 */
+  --emotion-1: #E8A0A0;  /* 珊瑚红 - 快乐 */
+  --emotion-2: #A8C5A0;  /* 鼠尾草绿 - 平静 */
+  --emotion-3: #A0B5C8;  /* 静谧蓝 - 难过 */
+  --emotion-4: #B0B0B0;  /* 烟灰 - 焦虑 */
+  --emotion-5: #C5B0D5;  /* 香芋紫 - 疲惫 */
+  --emotion-6: #D5C890;  /* 姜黄色 - 惊喜 */
+
+  /* 今日高亮色 */
+  --today-glow: rgba(168, 197, 160, 0.6);
+
+  /* 间距 */
+  --spacing-xs: 8rpx;
+  --spacing-sm: 16rpx;
+  --spacing-md: 24rpx;
+  --spacing-lg: 32rpx;
+
+  /* 圆角 */
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+
+  /* 字体 */
+  --font-pixel: 'FusionPixel', 'Courier New', 'Consolas', monospace;
+  --font-size-sm: 24rpx;
+  --font-size-md: 28rpx;
+  --font-size-lg: 36rpx;
+  --font-size-xl: 48rpx;
+}

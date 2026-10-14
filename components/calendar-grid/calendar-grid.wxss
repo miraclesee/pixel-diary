@@ -1,0 +1,146 @@
+/* components/calendar-grid/calendar-grid.wxss - 日历网格样式 */
+
+/* ===== 容器布局 ===== */
+.calendar-container {
+  width: 100%;
+  padding: var(--spacing-sm);
+  box-sizing: border-box;
+}
+
+/* ===== 星期标题行 ===== */
+.week-header {
+  display: flex;
+  margin-bottom: var(--spacing-xs);
+}
+
+.week-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1;
+  padding: var(--spacing-xs) 0;
+}
+
+/* ===== 网格滑动容器 ===== */
+.grid-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.grid-slider {
+  transition: transform 300ms ease;
+  will-change: transform;
+}
+
+/* ===== CSS Grid 网格 ===== */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4rpx;
+}
+
+/* ===== 格子基础样式 ===== */
+.cell {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  transition: transform 120ms ease;
+}
+
+.cell:active {
+  transform: scale(0.95);
+}
+
+/* ===== 空格子 ===== */
+.cell--empty {
+  background: #ECECEE;
+}
+
+/* 像素点占位伪元素 */
+.cell--empty::after {
+  content: '';
+  position: absolute;
+  width: 2rpx;
+  height: 2rpx;
+  background: var(--text-light);
+  border-radius: 50%;
+  opacity: 0.3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== 已打卡格子 — 全覆盖色块，无边框 ===== */
+.cell--checked {
+  overflow: hidden;
+  padding: 0;
+}
+
+/* ===== 补录格子 — 全覆盖色块 + 虚线边框 ===== */
+.cell--backfill {
+  overflow: hidden;
+  padding: 0;
+  border: 2rpx dashed rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 2rpx rgba(0, 0, 0, 0.05);
+}
+
+/* ===== 非当月格子 — 不可见占位 ===== */
+.cell--other-month {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===== 今日呼吸发光 ===== */
+@keyframes breathe {
+  0%, 100% {
+    box-shadow: 0 0 4rpx var(--today-glow);
+  }
+  50% {
+    box-shadow: 0 0 16rpx var(--today-glow);
+  }
+}
+
+.cell--today {
+  animation: breathe 2.5s ease-in-out infinite;
+  will-change: box-shadow;
+  z-index: 1;
+}
+
+/* ===== 情绪色块 ===== */
+.cell__emotion {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+}
+
+/* ===== 日期数字 ===== */
+.cell__day {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+/* 已打卡/补录时日期数字为白色 */
+.cell--checked .cell__day,
+.cell--backfill .cell__day {
+  color: #FFFFFF;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.25);
+}
+
+/* ===== 月份滑动动画 ===== */
+.grid-slider.slide-left-out {
+  transform: translateX(-100%);
+}
+
+.grid-slider.slide-right-out {
+  transform: translateX(100%);
+}

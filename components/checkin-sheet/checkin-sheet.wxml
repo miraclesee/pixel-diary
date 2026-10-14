@@ -1,0 +1,72 @@
+<!-- components/checkin-sheet/checkin-sheet.wxml - 打卡弹窗组件 -->
+
+<!-- 外层始终渲染，通过 hidden 属性控制整体显隐，保证关闭动画期间 DOM 存活 -->
+<view class="sheet-root" hidden="{{!visible && !closing}}">
+  <!-- 遮罩层：移除 wx:if，改用 CSS class 控制透明度 -->
+  <view class="sheet-mask {{visible && !closing ? 'sheet-mask--visible' : ''}}" bindtap="onMaskTap">
+    <!-- 弹窗面板（catchtap 阻止冒泡到遮罩层） -->
+    <view class="sheet-panel {{visible && !closing ? 'sheet-panel--visible' : ''}} {{closing ? 'sheet-panel--closing' : ''}}" catchtap="preventBubble">
+
+    <!-- 拖拽指示条 -->
+    <view class="sheet-handle">
+      <view class="sheet-handle__bar"></view>
+    </view>
+
+    <!-- 日期标题 -->
+    <view class="sheet-header">
+      <text class="sheet-header__title">{{dateStr}}</text>
+      <text class="sheet-header__subtitle" wx:if="{{isBackfill}}">补录打卡</text>
+      <text class="sheet-header__subtitle" wx:else>今日打卡</text>
+    </view>
+
+    <!-- 情绪选择区 -->
+    <view class="emotion-picker">
+      <text class="emotion-picker__label">今天的心情是？</text>
+      <view class="emotion-picker__grid">
+        <view
+          wx:for="{{emotions}}"
+          wx:key="code"
+          class="emotion-item {{selectedEmotion === item.code ? 'emotion-item--selected' : ''}}"
+          data-code="{{item.code}}"
+          bindtap="onEmotionTap"
+        >
+          <text class="emotion-item__emoji">{{item.emoji}}</text>
+          <text class="emotion-item__label">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 文字输入区（选中情绪后展开） -->
+    <view class="comment-section {{selectedEmotion > 0 ? 'comment-section--visible' : ''}}">
+      <textarea
+        class="comment-input"
+        placeholder="今天有什么想倾诉的吗？（选填）"
+        value="{{commentText}}"
+        bindinput="onCommentInput"
+        maxlength="{{maxCommentLength}}"
+        auto-height
+      />
+    </view>
+
+    <!-- 隐私开关 -->
+    <view class="privacy-toggle" wx:if="{{selectedEmotion > 0}}">
+      <text class="privacy-toggle__label">匿名发布到广场</text>
+      <switch checked="{{isPublic}}" bindchange="onPublicChange" color="var(--emotion-2)" />
+    </view>
+
+    <!-- 保存按钮 -->
+    <view class="save-btn-wrapper">
+      <button
+        class="save-btn {{selectedEmotion > 0 ? 'save-btn--active' : ''}}"
+        disabled="{{selectedEmotion === 0 || saving}}"
+        bindtap="onSave"
+      >
+        {{saving ? '保存中...' : '✓ 记录今天'}}
+      </button>
+    </view>
+
+    <!-- 底部安全区 -->
+    <view class="safe-bottom"></view>
+  </view>
+  </view>
+</view>

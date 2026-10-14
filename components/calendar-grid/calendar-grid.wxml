@@ -1,0 +1,34 @@
+<view class="calendar-container">
+  <!-- 星期标题行 -->
+  <view class="week-header">
+    <view class="week-title" wx:for="{{weekTitles}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <!-- 日历网格 - 带动画容器 -->
+  <view class="grid-wrapper">
+    <view class="grid-slider {{slideClass}}">
+      <view class="calendar-grid">
+        <view
+          wx:for="{{days}}"
+          wx:key="index"
+          class="cell cell--{{item.status}} {{item.isToday ? 'cell--today' : ''}} {{item.day === 0 ? 'cell--other-month' : ''}}"
+          data-date-str="{{item.dateStr}}"
+          data-status="{{item.status}}"
+          data-index="{{index}}"
+          catchtouchstart="onCellTouchStart"
+          catchtouchend="onCellTouchEnd"
+          bindtap="onCellTap"
+        >
+          <!-- 日期数字（非当月不显示） -->
+          <text class="cell__day" wx:if="{{item.day > 0}}">{{item.day}}</text>
+          <!-- 已打卡/补录的情绪色块覆盖 -->
+          <view
+            class="cell__emotion"
+            wx:if="{{item.status === 'checked' || item.status === 'backfill'}}"
+            style="background-color: var(--emotion-{{item.emotionCode}});"
+          ></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

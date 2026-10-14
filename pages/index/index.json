@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "calendar-grid": "/components/calendar-grid/calendar-grid",
+    "checkin-sheet": "/components/checkin-sheet/checkin-sheet",
+    "emotion-stats": "/components/emotion-stats/emotion-stats"
+  }
+}
